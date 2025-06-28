@@ -38,7 +38,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchArticles = createAsyncThunk("articles/fetch", async () => {
   const res = await fetch(
-    "https://cryptopanic.com/api/v1/posts/?auth_token=YOUR_API_KEY&public=true"
+    "https://newsapi.org/v2/everything?q=crypto&apiKey=6a52bdc7de3c49d38895cdfba705c005"
+    // "https://cryptopanic.com/api/v1/posts/?auth_token=YOUR_API_KEY&public=true"
   );
 
   if (!res.ok) {
@@ -46,6 +47,7 @@ export const fetchArticles = createAsyncThunk("articles/fetch", async () => {
   }
 
   const data = await res.json();
+  console.log("data ==>", data);
   return data.results;
 });
 
