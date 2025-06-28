@@ -1,0 +1,5 @@
+# ninja log v5
+1	10	0	/Users/gajju/Desktop/WorkSpace/Test/CryptoNewsFeedApp/android/app/.cxx/Debug/3d3n1l1g/x86/CMakeFiles/cmake.verify_globs	9ebef778f906d9c
+0	1393	1751095066110394360	CMakeFiles/appmodules.dir/Users/gajju/Desktop/WorkSpace/Test/CryptoNewsFeedApp/android/app/build/generated/autolinking/src/main/jni/autolinking.cpp.o	1a04903053c51330
+0	1571	1751095066282085461	CMakeFiles/appmodules.dir/OnLoad.cpp.o	7a018cdd349b2ea4
+1571	1630	1751095066351978478	/Users/gajju/Desktop/WorkSpace/Test/CryptoNewsFeedApp/android/app/build/intermediates/cxx/Debug/3d3n1l1g/obj/x86/libappmodules.so	ac4f05a1b052a94a
