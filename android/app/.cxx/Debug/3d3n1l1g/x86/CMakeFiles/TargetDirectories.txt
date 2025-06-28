@@ -1,3 +1,15 @@
 /Users/gajju/Desktop/WorkSpace/Test/CryptoNewsFeedApp/android/app/.cxx/Debug/3d3n1l1g/x86/CMakeFiles/appmodules.dir
 /Users/gajju/Desktop/WorkSpace/Test/CryptoNewsFeedApp/android/app/.cxx/Debug/3d3n1l1g/x86/CMakeFiles/edit_cache.dir
 /Users/gajju/Desktop/WorkSpace/Test/CryptoNewsFeedApp/android/app/.cxx/Debug/3d3n1l1g/x86/CMakeFiles/rebuild_cache.dir
+/Users/gajju/Desktop/WorkSpace/Test/CryptoNewsFeedApp/android/app/.cxx/Debug/3d3n1l1g/x86/safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir
+/Users/gajju/Desktop/WorkSpace/Test/CryptoNewsFeedApp/android/app/.cxx/Debug/3d3n1l1g/x86/safeareacontext_autolinked_build/CMakeFiles/edit_cache.dir
+/Users/gajju/Desktop/WorkSpace/Test/CryptoNewsFeedApp/android/app/.cxx/Debug/3d3n1l1g/x86/safeareacontext_autolinked_build/CMakeFiles/rebuild_cache.dir
+/Users/gajju/Desktop/WorkSpace/Test/CryptoNewsFeedApp/android/app/.cxx/Debug/3d3n1l1g/x86/rnscreens_autolinked_build/CMakeFiles/react_codegen_rnscreens.dir
+/Users/gajju/Desktop/WorkSpace/Test/CryptoNewsFeedApp/android/app/.cxx/Debug/3d3n1l1g/x86/rnscreens_autolinked_build/CMakeFiles/edit_cache.dir
+/Users/gajju/Desktop/WorkSpace/Test/CryptoNewsFeedApp/android/app/.cxx/Debug/3d3n1l1g/x86/rnscreens_autolinked_build/CMakeFiles/rebuild_cache.dir
+/Users/gajju/Desktop/WorkSpace/Test/CryptoNewsFeedApp/android/app/.cxx/Debug/3d3n1l1g/x86/RNVectorIconsSpec_autolinked_build/CMakeFiles/react_codegen_RNVectorIconsSpec.dir
+/Users/gajju/Desktop/WorkSpace/Test/CryptoNewsFeedApp/android/app/.cxx/Debug/3d3n1l1g/x86/RNVectorIconsSpec_autolinked_build/CMakeFiles/edit_cache.dir
+/Users/gajju/Desktop/WorkSpace/Test/CryptoNewsFeedApp/android/app/.cxx/Debug/3d3n1l1g/x86/RNVectorIconsSpec_autolinked_build/CMakeFiles/rebuild_cache.dir
+/Users/gajju/Desktop/WorkSpace/Test/CryptoNewsFeedApp/android/app/.cxx/Debug/3d3n1l1g/x86/RNCWebViewSpec_autolinked_build/CMakeFiles/react_codegen_RNCWebViewSpec.dir
+/Users/gajju/Desktop/WorkSpace/Test/CryptoNewsFeedApp/android/app/.cxx/Debug/3d3n1l1g/x86/RNCWebViewSpec_autolinked_build/CMakeFiles/edit_cache.dir
+/Users/gajju/Desktop/WorkSpace/Test/CryptoNewsFeedApp/android/app/.cxx/Debug/3d3n1l1g/x86/RNCWebViewSpec_autolinked_build/CMakeFiles/rebuild_cache.dir

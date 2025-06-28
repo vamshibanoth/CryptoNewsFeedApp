@@ -1,10 +1,6 @@
-# macOS
+# macOS system files
 .DS_Store
-
-# Thumbnails
 ._*
-
-# Files that might appear in the root of a volume
 .DocumentRevisions-V100
 .fseventsd
 .Spotlight-V100
@@ -12,54 +8,72 @@
 .Trashes
 .VolumeIcon.icns
 
-# Xcode
-build/
+# Xcode build files
+ios/build/
+ios/Pods/
 *.pbxuser
-!default.pbxuser
 *.mode1v3
-!default.mode1v3
 *.mode2v3
-!default.mode2v3
 *.perspectivev3
-!default.perspectivev3
-xcuserdata
+xcuserdata/
 *.xccheckout
 *.moved-aside
-DerivedData
+DerivedData/
 *.hmap
 *.ipa
 *.xcuserstate
-project.xcworkspace
+project.xcworkspace/
+Podfile.lock
 
-# Android/IntelliJ
-.idea/
-.gradle/
-local.properties
-*.iml
-android/app/build/
-android/build/
+# Android build files
 android/.gradle/
 android/.idea/
-android/.settings/
-android/app/libs/
-android/keystores/debug.keystore
+android/app/build/
+android/build/
+android/local.properties
+*.iml
+*.keystore
 
-# Node.js
+# React Native and Node.js
 node_modules/
-npm-debug.log
-yarn-error.log
-yarn-debug.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Logs
 *.log
 
-# Buck
-buck-out/
-\.buckd/
+# Babel
+.babelrc
+.babel.cache
 
-# Expo
+# Metro
+.metro-cache/
+.react-native/
+
+# Expo (if used)
 .expo/
 .expo-shared/
 
-# Misc
+# Environment files
 .env
+.env.*
+
+# VSCode/JetBrains/IDEs
+.vscode/
+.idea/
+
+# Buck
+buck-out/
+.buckd/
+
+# Watchman
+.watchmanconfig
+
+# Testing / Coverage
+coverage/
+jest-test-results.json
+
+# Misc
+*.swp
+*.lock
