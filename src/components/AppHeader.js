@@ -46,13 +46,13 @@ const AppHeader = () => {
         </TouchableOpacity>
 
         {/* View mode toggle */}
-        <TouchableOpacity onPress={toggleView} style={styles.iconBtn}>
+        {/* <TouchableOpacity onPress={toggleView} style={styles.iconBtn}>
           <Ionicons
             name={viewMode === "list" ? "list" : "swap-vertical"}
             size={20}
             color="#fff"
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );

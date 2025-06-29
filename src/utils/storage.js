@@ -17,3 +17,20 @@ export const loadTheme = async () => {
     return null;
   }
 };
+
+export const saveTopic = async (topic) => {
+  try {
+    await AsyncStorage.setItem("NEWS_TOPIC", topic);
+  } catch (e) {
+    console.error("Failed to save topic", e);
+  }
+};
+
+export const loadTopic = async () => {
+  try {
+    const topic = await AsyncStorage.getItem("NEWS_TOPIC");
+    return topic || "Crypto";
+  } catch (e) {
+    return "Crypto";
+  }
+};
