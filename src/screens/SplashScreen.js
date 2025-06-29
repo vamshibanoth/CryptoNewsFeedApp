@@ -9,38 +9,52 @@ import {
 import { useDispatch } from "react-redux";
 import { setTheme } from "../store/themeSlice";
 import { loadTheme } from "../utils/storage";
+import branch from "react-native-branch";
+import notifee from "@notifee/react-native";
 
 const SplashScreen = ({ navigation }) => {
   const dispatch = useDispatch();
-  // SplashScreen.js
+
   useEffect(() => {
     const init = async () => {
+      const settings = await notifee.requestPermission();
+      if (settings.authorizationStatus >= 1) {
+        console.log("Notification permission granted");
+      } else {
+        console.warn("Notification permission denied");
+      }
+
       let savedTheme = await loadTheme();
       if (!savedTheme) {
         savedTheme = Appearance.getColorScheme() || "light";
       }
-
       dispatch(setTheme(savedTheme));
-      navigation.replace("NewsFeed");
+
+      try {
+        const params = await branch.getLatestReferringParams();
+        console.log("🔗 Branch params from cold start:", params);
+
+        if (params["+clicked_branch_link"]) {
+          const meta = params.action_params
+            ? JSON.parse(params.action_params)
+            : {};
+          const articleUrl = meta.url || params.url || null;
+
+          if (articleUrl) {
+            navigation.replace("ArticleWebView", { url: articleUrl });
+            return;
+          }
+        }
+
+        navigation.replace("NewsFeed");
+      } catch (error) {
+        console.error("Branch error:", error);
+        navigation.replace("NewsFeed");
+      }
     };
 
     init();
-  }, []);
-
-  //   useEffect(() => {
-  //     const init = async () => {
-  //       let savedTheme = await loadTheme();
-
-  //       if (!savedTheme) {
-  //         savedTheme = Appearance.getColorScheme() || "light";
-  //       }
-
-  //       dispatch(setTheme(savedTheme));
-  //       navigation.replace("NewsFeed");
-  //     };
-
-  //     setTimeout(init, 1000); // optional delay to show splash
-  //   }, []);
+  }, [dispatch, navigation]);
 
   return (
     <View style={styles.container}>
@@ -59,5 +73,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#fff",
   },
-  logo: { fontSize: 32, fontWeight: "bold", marginBottom: 20 },
+  logo: {
+    fontSize: 32,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
 });

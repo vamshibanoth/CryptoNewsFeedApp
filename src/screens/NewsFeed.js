@@ -23,14 +23,17 @@ import { fetchArticles } from "../api/newsapi";
 import { saveTopic, loadTopic } from "../utils/storage";
 import { useDispatch, useSelector } from "react-redux";
 import { createBranchObject } from "../utils/branchUniversalObject";
+import {
+  onDisplayNotification,
+  setupNotificationChannel,
+} from "../utils/notifications";
+import { scheduleNotification } from "../utils/scheduleNotification";
 
 const TOPICS = ["Crypto", "Bitcoin", "Ethereum", "Blockchain", "Web3"];
 
 const NewsFeed = () => {
   const dispatch = useDispatch();
-
   const theme = useSelector((state) => state.theme.layout);
-  const viewMode = useSelector((state) => state.settings.viewMode);
   const isDark = theme === "dark";
 
   const [articles, setArticles] = useState([]);
@@ -38,6 +41,7 @@ const NewsFeed = () => {
   const [loading, setLoading] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedUrl, setSelectedUrl] = useState(null);
+  const [selectedTitle, setSelectedTitle] = useState(null);
   const [selectedTopic, setSelectedTopic] = useState("Crypto");
   const [savedUrls, setSavedUrls] = useState([]);
   const [openedUrls, setOpenedUrls] = useState([]);
@@ -84,6 +88,19 @@ const NewsFeed = () => {
     init();
   }, []);
 
+  useEffect(() => {
+    if (articles.length > 0) {
+      const latest = articles[0];
+      try {
+        setupNotificationChannel();
+        // onDisplayNotification(latest); //forground notification
+        scheduleNotification(latest, 10);
+      } catch (e) {
+        console.warn("Notification error:", e);
+      }
+    }
+  }, [articles]);
+
   const onRefresh = () => loadArticles(selectedTopic, true);
 
   const getTimeAgo = (timestamp) => {
@@ -110,7 +127,6 @@ const NewsFeed = () => {
     try {
       const existing = await AsyncStorage.getItem("SAVED_ARTICLES");
       const parsed = existing ? JSON.parse(existing) : [];
-
       const alreadySaved = parsed.find((a) => a.url === article.url);
 
       let updated;
@@ -129,10 +145,28 @@ const NewsFeed = () => {
     }
   };
 
-  const shareArticle = async (url) => {
+  const shareArticle = async (articleurl, title = "Interesting article") => {
     try {
-      // asyncfun();
-      await Share.share({ message: `Check this article: ${url}` });
+      const metaData = {
+        stackName: "App",
+        screenName: "ArticleWebView",
+        action_params: JSON.stringify({
+          url: articleurl,
+          mediaSource: "Deeplink",
+        }),
+        previousScreen: "NewsFeed",
+      };
+
+      const branchObj = await createBranchObject(metaData);
+      const linkProperties = {
+        feature: "share",
+        channel: "social_media",
+      };
+
+      const { url } = await branchObj.generateShortUrl(linkProperties);
+      await Share.share({
+        message: `Check this article: ${title}\n${url}`,
+      });
     } catch (error) {
       console.error("Error sharing article:", error);
     }
@@ -146,6 +180,7 @@ const NewsFeed = () => {
       <TouchableOpacity
         onPress={() => {
           setSelectedUrl(item.url);
+          setSelectedTitle(item.title);
           setModalVisible(true);
           if (!isOpened) setOpenedUrls((prev) => [...prev, item.url]);
         }}
@@ -172,7 +207,9 @@ const NewsFeed = () => {
                 color={isSaved ? "#b71c1c" : "#555"}
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => shareArticle(item.url)}>
+            <TouchableOpacity
+              onPress={() => shareArticle(item.url, item.title)}
+            >
               <Ionicons name="share-social-outline" size={20} color="#555" />
             </TouchableOpacity>
             {isOpened && (
@@ -189,33 +226,6 @@ const NewsFeed = () => {
       </TouchableOpacity>
     );
   };
-  // const asyncfun = async () => {
-  //   const metaData = {
-  //     stackName: "App",
-  //     screenName: "ArticleWebView",
-  //     // action_params: JSON.stringify({
-  //     //   ...keys?.skuDetailData,
-  //     //   publisherEeid: publisherEeid,
-  //     //   mediaSource: "Deeplink",
-  //     // }),
-  //     previousScreen: "My Home",
-  //   };
-
-  //   console.log("branchObj", metaData);
-
-  //   const branchObj = await createBranchObject(metaData);
-  //   const linkProperties = {
-  //     feature: "share",
-  //     channel: "social_media",
-  //   };
-  //   console.log("branchObj", branchObj);
-
-  //   // const controlParams = {
-  //   //   desktop_url: 'https://www.leo1.in/leo-1-card/',
-  //   // };
-  //   console.log("ioo", await branchObj.generateShortUrl(linkProperties));
-  //   const { url } = await branchObj.generateShortUrl(linkProperties);
-  // };
 
   return (
     <SafeAreaView
@@ -289,7 +299,9 @@ const NewsFeed = () => {
                 color={savedUrls.includes(selectedUrl) ? "#b71c1c" : "#555"}
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => shareArticle(selectedUrl)}>
+            <TouchableOpacity
+              onPress={() => shareArticle(selectedUrl, selectedTitle)}
+            >
               <Ionicons name="share-social-outline" size={22} color="#555" />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => setModalVisible(false)}>
