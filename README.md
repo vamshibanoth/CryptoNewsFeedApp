@@ -12,7 +12,7 @@ The Hindu News app
 
 ### ✅ Core Functionality
 
-* **News Feed**: View latest articles based on selected crypto topics.
+* **News Feed**: View latest articles based on selected crypto topics. useing the `https://newsapi.org/` api key is stored in .env file so please create your apikey and update it.
 * **Topic Filtering**: Choose between topics like `Crypto`, `Bitcoin`, `Ethereum`, etc.
 * **Save Articles**: Bookmark your favorite articles locally.
 * **Offline Mode**: Displays cached articles when offline.
