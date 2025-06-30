@@ -33,7 +33,7 @@ android/build/
 android/local.properties
 *.iml
 *.keystore
-
+.env
 # React Native and Node.js
 node_modules/
 npm-debug.log*
