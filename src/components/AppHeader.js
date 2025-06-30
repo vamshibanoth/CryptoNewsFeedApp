@@ -11,7 +11,7 @@ const AppHeader = () => {
   const dispatch = useDispatch();
 
   const theme = useSelector((state) => state.theme.layout);
-  const viewMode = useSelector((state) => state.settings.viewMode);
+  // const viewMode = useSelector((state) => state.settings.viewMode);
   const isDark = theme === "dark";
 
   const toggleTheme = () => {
@@ -20,9 +20,9 @@ const AppHeader = () => {
     saveTheme(newTheme); // Persist in AsyncStorage
   };
 
-  const toggleView = () => {
-    dispatch(toggleViewMode());
-  };
+  // const toggleView = () => {
+  //   dispatch(toggleViewMode());
+  // };
 
   return (
     <View

@@ -230,6 +230,7 @@ const NewsFeed = () => {
   return (
     <SafeAreaView
       style={{ flex: 1, backgroundColor: isDark ? "#111" : "#f2f2f2" }}
+      testID="newsfeed-container"
     >
       <AppHeader />
 
@@ -273,6 +274,7 @@ const NewsFeed = () => {
         <ActivityIndicator size="large" style={{ marginTop: 40 }} />
       ) : (
         <FlatList
+          testID="articles-list"
           data={articles}
           renderItem={renderItem}
           keyExtractor={(item, idx) => idx.toString()}
