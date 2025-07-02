@@ -227,6 +227,21 @@ const NewsFeed = () => {
     );
   };
 
+  const EmptyListMessage = () => (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 20,
+      }}
+    >
+      <Text style={{ fontSize: 16, color: "#999" }}>
+        No articles available at the moment.
+      </Text>
+    </View>
+  );
+
   return (
     <SafeAreaView
       style={{ flex: 1, backgroundColor: isDark ? "#111" : "#f2f2f2" }}
@@ -281,6 +296,11 @@ const NewsFeed = () => {
           refreshing={refreshing}
           onRefresh={onRefresh}
           contentContainerStyle={{ paddingBottom: 20 }}
+          initialNumToRender={10}
+          maxToRenderPerBatch={5}
+          windowSize={5}
+          removeClippedSubviews={true}
+          ListEmptyComponent={EmptyListMessage}
         />
       )}
 
